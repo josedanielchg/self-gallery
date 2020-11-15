@@ -1,0 +1,134 @@
+.add-image {
+  input[type="file"] {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  .drop-container {
+    margin: 0 auto;
+    overflow: visible;
+
+    @include breakpoint(xs) {
+      width: 95%;
+    }
+
+    @include breakpoint(sm) {
+      width: 65%;
+    }
+
+    &__placeholder {
+      border-radius: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 250px;
+      transition: 0.1s ease all;
+      cursor: pointer;
+
+      //Boders
+      background-image: linear-gradient(
+          to right,
+          lighten($gray-color, 10) 50%,
+          transparent 50%
+        ),
+        linear-gradient(to right, lighten($gray-color, 10) 50%, transparent 50%),
+        linear-gradient(
+          to bottom,
+          lighten($gray-color, 10) 50%,
+          transparent 50%
+        ),
+        linear-gradient(
+          to bottom,
+          lighten($gray-color, 10) 50%,
+          transparent 50%
+        );
+      background-position: left top, left bottom, left top, right top;
+      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+      background-size: 25px 2px, 25px 2px, 2px 25px, 2px 25px;
+
+      &:hover {
+        transform: scale(1.05);
+        background-size: 25px 4px, 25px 4px, 4px 25px, 4px 25px;
+      }
+    }
+
+    &__icon {
+      width: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__description {
+      width: 15rem;
+      text-align: center;
+      line-height: 1.25;
+    }
+  }
+
+  .progress-container {
+    margin: 0 auto;
+
+    @include breakpoint(xs) {
+      width: 95%;
+    }
+
+    @include breakpoint(sm) {
+      width: 65%;
+    }
+
+    &__item {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background-color: rgba(darken($white-color, 20), 0.7);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      transition: 0.6s ease all;
+      opacity: 0;
+      pointer-events: none;
+
+      h3 {
+        font-weight: normal;
+        margin-bottom: 1rem;
+      }
+
+      &.open {
+        transition: 0.6s ease all;
+        pointer-events: all;
+        opacity: 1;
+      }
+    }
+
+    &__data {
+      margin-bottom: 0.5rem;
+    }
+
+    &__percentage {
+      font-weight: 700;
+    }
+
+    progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      outline: none;
+      border: 0;
+      background-color: rgba($color: #fff, $alpha: 0.4);
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: rgba($color: #fff, $alpha: 0.4);
+    }
+
+    progress::-moz-progress-bar {
+      background-color: darken($green-color, 20%);
+    }
+
+    progress::-webkit-progress-value {
+      background-color: darken($green-color, 20%);
+    }
+  }
+}

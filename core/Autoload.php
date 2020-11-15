@@ -7,7 +7,7 @@ spl_autoload_register(function ($class) {
 
     // base directory for the namespace prefix
     // \SelfGallery\...
-    $base_dir = str_replace('core', '', __DIR__ );
+    $base_dir = dirname(__DIR__) . '\\';
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);

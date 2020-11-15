@@ -1,0 +1,30 @@
+.section-header {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  @include breakpoint(xs) {
+    width: 90%;
+  }
+
+  @include breakpoint(sm) {
+    width: 60%;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: normal;
+  }
+
+  &__icon-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 5px;
+  }
+
+  .icon {
+    width: 1rem;
+  }
+}

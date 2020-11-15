@@ -1,0 +1,13 @@
+.container {
+  width: 80%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+  position: relative;
+  z-index: 10;
+
+  @include breakpoint(xs) {
+    width: 90%;
+    padding-bottom: 2rem;
+  }
+}

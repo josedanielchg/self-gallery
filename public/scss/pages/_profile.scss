@@ -1,0 +1,62 @@
+.profile {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $gray-color;
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      box-shadow: 5px 5px 15px rgba($color: #000000, $alpha: 0.2);
+    }
+
+    input[type="file"] {
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+    &__photo-frame {
+      height: 200px;
+      width: 200px;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    &__user-photo {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      box-shadow: 5px 5px 15px rgba($color: #000000, $alpha: 0.2);
+    }
+
+    &__edit-user-photo {
+      position: absolute;
+      z-index: 10;
+      bottom: 20px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $green-color;
+      box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__group {
+      @include breakpoint(xs) {
+        width: 90%;
+      }
+
+      @include breakpoint(sm) {
+        width: 60%;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.header-logo {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+
+  &__img {
+    padding-top: 1rem;
+    width: 12rem;
+  }
+}

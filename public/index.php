@@ -3,24 +3,17 @@
 require_once('../core/Autoload.php');
 
 use app\core\Application;
+use app\controllers\AddImageController;
+use app\controllers\HomeController;
+use app\controllers\ProfileController;
+use app\controllers\SigninController;
 
-$prueba = new Prueba();
+$app = new Application(dirname(__DIR__));
 
-$app = new Application();
-
-
-$app = new Application();
-
-$app->router->get('/', "Estas en Home");
-
-$app->router->get('/login', 'Estas en login');
+$app->router->get('/', [HomeController::class, 'home']);
+$app->router->get('/home', [HomeController::class, 'home']);
+$app->router->get('/signin', [SigninController::class, 'signin']);
+$app->router->get('/add_image', [AddImageController::class, 'addImage']);
+$app->router->get('/profile', [ProfileController::class, 'profile']);
 
 $app->run();
-// $app->router->get('/register', [SiteController::class, 'register']);
-// $app->router->post('/register', [SiteController::class, 'register']);
-// $app->router->get('/login', [SiteController::class, 'login']);
-// $app->router->post('/login', [SiteController::class, 'login']);
-// $app->router->get('/logout', [SiteController::class, 'logout']);
-// $app->router->get('/contact', [SiteController::class, 'contact']);
-// $app->router->get('/about', [AboutController::class, 'index']);
-// $app->router->get('/profile', [SiteController::class, 'profile']);

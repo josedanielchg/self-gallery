@@ -1,0 +1,65 @@
+.button {
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  display: inline-block;
+  color: $violet-color;
+  transition: 0.3s ease all;
+  background-color: $green-color;
+  font-size: 1.5rem;
+  font-weight: normal;
+
+  //   border: 1px $gray-color solid;
+
+  span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    transition: 0.3s ease transform;
+  }
+
+  &:hover {
+    background-color: darken($green-color, 10%);
+
+    .icon.cog {
+      transform: rotate(120deg);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &-light {
+    background-color: darken($white-color, 5%);
+    border: 1px darken($white-color, 10%) solid;
+    color: $gray-color;
+
+    &:hover {
+      background-color: darken($white-color, 20%);
+    }
+  }
+
+  &-transparent {
+    background-color: transparent;
+    color: $green-color;
+    border: 1px solid $green-color;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: normal;
+
+    &:hover {
+      color: $violet-color;
+      background-color: $green-color;
+    }
+  }
+
+  &-small {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+  }
+}
