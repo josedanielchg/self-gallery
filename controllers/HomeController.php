@@ -11,6 +11,9 @@ class HomeController extends Controller {
 
      public function home()
      {
+          if(Application::$app->isGuest())
+               Application::$app->response->redirect('/');
+
           $this->setLayout([
                'main' => 'main',
                'complements' => [
@@ -25,6 +28,8 @@ class HomeController extends Controller {
                     'tittle' => 'SelfGallery',
                     'site' => 'home',
                     'addImageBtn' => true,
+                    'username' => Application::$app->user->username,
+                    'publications' => Application::$app->user->publications
                ],
                'scripts' => [
                     'modal.js'

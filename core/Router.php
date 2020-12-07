@@ -9,7 +9,8 @@ class Router
     
     private array $routeMap = [];
 
-     public function __construct(Request $request, Response $response) {
+     public function __construct(Request $request, Response $response)
+     {
           $this->request = $request;
           $this->response = $response;
      }
@@ -32,7 +33,7 @@ class Router
           $method = $this->request->getMethod();
           $url = $this->request->getUrl();
           $callback = $this->routeMap[$method][$url] ?? false;
-          
+
           if (!$callback) {
           echo "ERROR 404";
           return;
@@ -47,6 +48,7 @@ class Router
                Application::$app->controller = $controller;
                $callback[0] = $controller;
           }
+
           return call_user_func($callback, $this->request, $this->response);
      }
 }

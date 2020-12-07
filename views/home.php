@@ -9,9 +9,9 @@
      </div>
 
      <div class="user__data">
-          <h2 class="user__username">username</h2>
+          <h2 class="user__username">{{ $username }}</h2>
           <h3 class="user__publications">
-               <span class="user__publications-number">5</span> publications
+               <span class="user__publications-number">{{ $publications }}</span> publications
           </h3>
 
           <a href="/profile" class="button button-small user__edit-profile">

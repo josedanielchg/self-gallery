@@ -11,6 +11,9 @@ class ProfileController extends Controller {
 
      public function profile()
     {
+          if(Application::$app->isGuest())
+               Application::$app->response->redirect('/');
+
           $this->setLayout([
                'main' => 'main',
                'complements' => [
@@ -25,8 +28,11 @@ class ProfileController extends Controller {
                     'tittle' => 'SelfGallery',
                     'site' => 'profile',
                     'addImageBtn' => true,
+                    'username' => Application::$app->user->username,
                ],
-               'scripts'=> []
+               'scripts'=> [
+                    'profile.js'
+               ]
         ]);
     }
 }

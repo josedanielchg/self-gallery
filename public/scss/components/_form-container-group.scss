@@ -1,35 +1,101 @@
 .form-container__group {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 2rem auto;
+  gap: 5px;
+  align-items: center;
 
   .icon {
+    grid-column: 1/2;
+    grid-row: 2/3;
     width: 1.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 5px;
-    margin-left: 0;
   }
 
-  div {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  &-input {
+    position: relative;
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+    .state {
+      width: 20px;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &-input-error {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    display: none;
+
+    p {
+      color: #000;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
   }
 
   label {
-    margin-bottom: 5px;
+    grid-column: 2/3;
+    grid-row: 1/2;
     cursor: pointer;
+    margin-left: 0.25rem;
+    color: $gray-color;
   }
 
   input[type="text"],
-  input[type="mail"],
+  input[type="email"],
   input[type="password"] {
     width: 100%;
+    border: 3px solid transparent;
+
+    &:focus {
+      border: 3px solid lighten($violet-color, 20);
+      outline: none;
+      box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+    }
   }
 
   input[type="submit"] {
     max-width: 100%;
-    margin-top: 1rem;
+  }
+
+  &-submit {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1.5rem;
+  }
+
+  &.incorrect {
+    .input,
+    .input:focus {
+      border: 3px solid $red-color;
+    }
+
+    label {
+      color: $red-color;
+    }
+
+    .form-container__group-input-error {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .state.incorrect {
+      opacity: 1;
+    }
+  }
+
+  &.correct {
+    .state.correct {
+      opacity: 1;
+    }
   }
 }

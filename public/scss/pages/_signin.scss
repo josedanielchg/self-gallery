@@ -8,6 +8,9 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 8px rgba(0, 0, 0, 0.22);
 
   .btn-menu {
+    position: relative;
+    z-index: 10;
+
     @include breakpoint(xs-sm) {
       display: flex;
       justify-content: center;
@@ -56,7 +59,7 @@
         h2 {
           font-size: 2rem;
           text-align: center;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
           font-weight: 100;
         }
       }
@@ -79,7 +82,7 @@
         h2 {
           font-size: 1.5rem;
           text-align: center;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
           font-weight: 100;
 
           span {
@@ -99,21 +102,27 @@
 
     //Basics Form Styles for SmartPhone Size
     @include breakpoint(xs-sm) {
-      top: 6rem;
+      top: 1rem;
       padding: 0 2rem;
       width: 100%;
+      height: 100%;
+      z-index: 0;
 
       form {
         margin: 0 auto;
         height: 100%;
+        justify-content: center;
 
         @include breakpoint(sm) {
           width: 60%;
         }
 
         @media (max-width: 450px) {
-          .icon {
-            display: none;
+          .form-container__group {
+            grid-template-columns: 0 auto;
+            .icon {
+              display: none;
+            }
           }
         }
       }
@@ -142,13 +151,13 @@
       }
     }
 
-    label,
     .forgot-btn {
       color: $gray-color;
     }
 
     .forgot-btn {
-      margin-top: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
       text-align: left;
       background-color: unset;
     }
@@ -167,7 +176,7 @@
 
   //Panels Animation in Phone Screen Size
   @include breakpoint(xs-sm) {
-    min-height: 632px;
+    min-height: 814px;
 
     .sign-in-container,
     .sign-up-container {
@@ -196,7 +205,7 @@
 
   //Panels Animation in Desktop Screen Size
   @include breakpoint(md) {
-    min-height: 600px;
+    min-height: 714px;
 
     .sign-in-container,
     .sign-up-container {

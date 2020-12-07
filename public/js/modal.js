@@ -1,3 +1,5 @@
+(() => {
+     
 const d = document,
      $modal = d.querySelector('.modal'),
      $modalImg = d.querySelector('.full-img');
@@ -14,3 +16,5 @@ d.addEventListener("click", e=> {
           $modal.classList.remove("open");
      }
 })
+
+})();

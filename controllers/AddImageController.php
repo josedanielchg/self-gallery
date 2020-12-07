@@ -11,6 +11,9 @@ class AddImageController extends Controller {
 
      public function addImage()
     {
+          if(Application::$app->isGuest())
+               Application::$app->response->redirect('/');
+               
           $this->setLayout([
                'main' => 'main',
                'complements' => [

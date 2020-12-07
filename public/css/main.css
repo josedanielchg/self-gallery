@@ -411,7 +411,8 @@ button {
 input {
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
   background-color: #f3f3f3;
 }
 
@@ -470,34 +471,88 @@ input {
 }
 
 .form-container__group {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 2rem auto;
+  gap: 5px;
+  align-items: center;
 }
 .form-container__group .icon {
+  grid-column: 1/2;
+  grid-row: 2/3;
   width: 1.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: 5px;
-  margin-left: 0;
 }
-.form-container__group div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.form-container__group-input {
+  position: relative;
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.form-container__group-input .state {
+  width: 20px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+.form-container__group-input-error {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: none;
+}
+.form-container__group-input-error p {
+  color: #000;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
 }
 .form-container__group label {
-  margin-bottom: 5px;
+  grid-column: 2/3;
+  grid-row: 1/2;
   cursor: pointer;
+  margin-left: 0.25rem;
+  color: #727272;
 }
 .form-container__group input[type=text],
-.form-container__group input[type=mail],
+.form-container__group input[type=email],
 .form-container__group input[type=password] {
   width: 100%;
+  border: 3px solid transparent;
+}
+.form-container__group input[type=text]:focus,
+.form-container__group input[type=email]:focus,
+.form-container__group input[type=password]:focus {
+  border: 3px solid #210099;
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
 }
 .form-container__group input[type=submit] {
   max-width: 100%;
-  margin-top: 1rem;
+}
+.form-container__group-submit {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1.5rem;
+}
+.form-container__group.incorrect .input,
+.form-container__group.incorrect .input:focus {
+  border: 3px solid #bb2929;
+}
+.form-container__group.incorrect label {
+  color: #bb2929;
+}
+.form-container__group.incorrect .form-container__group-input-error {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.form-container__group.incorrect .state.incorrect {
+  opacity: 1;
+}
+.form-container__group.correct .state.correct {
+  opacity: 1;
 }
 
 .add-image-container {
@@ -609,6 +664,10 @@ body {
   background-color: #fcfcfc;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 8px rgba(0, 0, 0, 0.22);
 }
+.signin .btn-menu {
+  position: relative;
+  z-index: 10;
+}
 @media (max-width: 991px) {
   .signin .btn-menu {
     display: flex;
@@ -653,7 +712,7 @@ body {
 .signin .form-container form.sign-form h2 {
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   font-weight: 100;
 }
 .signin .form-container form.forgot-password-form {
@@ -673,7 +732,7 @@ body {
 .signin .form-container form.forgot-password-form h2 {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   font-weight: 100;
 }
 .signin .form-container form.forgot-password-form h2 span {
@@ -688,13 +747,16 @@ body {
 }
 @media (max-width: 991px) {
   .signin .form-container {
-    top: 6rem;
+    top: 1rem;
     padding: 0 2rem;
     width: 100%;
+    height: 100%;
+    z-index: 0;
   }
   .signin .form-container form {
     margin: 0 auto;
     height: 100%;
+    justify-content: center;
   }
 }
 @media (max-width: 991px) and (min-width: 768px) {
@@ -703,7 +765,10 @@ body {
   }
 }
 @media (max-width: 991px) and (max-width: 450px) {
-  .signin .form-container form .icon {
+  .signin .form-container form .form-container__group {
+    grid-template-columns: 0 auto;
+  }
+  .signin .form-container form .form-container__group .icon {
     display: none;
   }
 }
@@ -728,12 +793,12 @@ body {
     z-index: 0;
   }
 }
-.signin .form-container label,
 .signin .form-container .forgot-btn {
   color: #727272;
 }
 .signin .form-container .forgot-btn {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
   text-align: left;
   background-color: unset;
 }
@@ -748,7 +813,7 @@ body {
 }
 @media (max-width: 991px) {
   .signin {
-    min-height: 632px;
+    min-height: 814px;
   }
   .signin .sign-in-container,
 .signin .sign-up-container {
@@ -772,7 +837,7 @@ body {
 }
 @media (min-width: 992px) {
   .signin {
-    min-height: 600px;
+    min-height: 714px;
   }
   .signin .sign-in-container,
 .signin .sign-up-container {

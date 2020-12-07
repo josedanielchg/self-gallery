@@ -8,7 +8,8 @@ class Request
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function getUrl() {
+    public function getUrl() 
+    {
         $path = $_SERVER['REQUEST_URI'];
 
         $position = strpos($path, '?');
@@ -23,15 +24,18 @@ class Request
         return $path;
     }
 
-    public function isGet() {
+    public function isGet() 
+    {
         return $this->getMethod() === 'get';
     }
 
-    public function isPost() {
+    public function isPost() 
+    {
         return $this->getMethod() === 'post';
     }
 
-    public function getBody() {
+    public function getBody() 
+    {
         $data = [];
 
         if ($this->isGet()) {
