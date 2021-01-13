@@ -16,8 +16,8 @@
      </main>
 
       <?php 
-               if( isset($addImageBtn) )
-               print("{{ layout->add_image_btn }}");
+          if( isset($addImageBtn) )
+          print("{{ layout->add_image_btn }}");
      ?>
 
      {{ layout->footer }}

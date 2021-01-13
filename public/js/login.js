@@ -1,5 +1,5 @@
 import FormValidation from "./modules/FormValidation.js";
-import submitData from "./modules/submitData.js";
+import submitData, {displayLoader, hiddenLoader} from "./modules/submitData.js";
 
 (() => {
      const d = document,
@@ -24,14 +24,23 @@ import submitData from "./modules/submitData.js";
           
           if( formValidation.validateForm() )
           {
-                const res =await submitData($form, 'login');
-               console.log(res);
+               const $spinner = e.target.querySelector('.spinner');
+
+               displayLoader($spinner);
+               const res =await submitData(new FormData($form), 'login');
+               hiddenLoader($spinner);
+
                if(res.ok)
-               {
                     w.location.href = res.url;
-               }
                else
                {
+                    Swal.fire({
+                         title: 'Error!',
+                         text: 'Please try again',
+                         icon: 'error',
+                         timer: 3000,
+                         timerProgressBar: true,
+                    });
                     for( const [key, value] of Object.entries(res.errors) )
                          value.forEach( er => formValidation.addError(key, er));
                }

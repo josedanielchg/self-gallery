@@ -6,14 +6,13 @@ class View
 {
      public function renderView($view, array $params)
      {
-
           $layoutName = Application::$app->controller->layouts['main'];
           $complementsLayout = Application::$app->controller->layouts['complements'];
           
-          $viewContent = $this->renderContent($view, $params['variables']);          
-          $layoutContent = $this->renderLayout($layoutName, $params['variables']);
+          $viewContent = $this->renderContent($view, $params['variables']);
+          $mainLayoutContent = $this->renderLayout($layoutName, $params['variables']);
 
-          $bindContent = str_replace('{{ content }}', $viewContent, $layoutContent);
+          $bindContent = str_replace('{{ content }}', $viewContent, $mainLayoutContent);
           $bindContent = $this->replaceLayouts($bindContent, $complementsLayout);
 
           if(isset( $params['scripts']))
@@ -71,8 +70,13 @@ class View
      {
           $scriptTags = "";
           //This loop will allow creating all the <script> tags that the view needs
-          foreach ($scriptFiles as $key) 
-               $scriptTags .= "<script src='js/$key' type='module'></script>";
+          foreach ($scriptFiles as $key => $value)
+          {
+               if($value === 'module-type')
+                    $scriptTags .= "<script src='js/$key' type='module'></script>";
+               else
+                    $scriptTags .= "<script src='js/$key'></script>";
+          } 
           
           $html = str_replace('{{ scripts->js }}', $scriptTags, $html);
           return $html;

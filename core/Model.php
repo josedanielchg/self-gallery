@@ -10,6 +10,7 @@ class Model
     const RULE_MAX = 'max';
     const RULE_MATCH = 'match';
     const RULE_UNIQUE = 'unique';
+    const RULE_UNREQUIRED = 'unrequired';
 
     public array $errors = [];
 
@@ -70,6 +71,9 @@ class Model
                         $this->addErrorByRule($attribute, self::RULE_UNIQUE);
                     }
                 }
+
+                if($ruleName === self::RULE_UNREQUIRED && !$value)
+                    $this->removeErrors($attribute);
             }
         }
         return empty($this->errors);
@@ -109,5 +113,9 @@ class Model
 
     public function getErrors() {
          return $this->errors;
+    }
+
+    public function removeErrors(string $attribute) {
+         unset($this->errors[$attribute]);
     }
 }

@@ -51,4 +51,9 @@ class Request
         }
         return $data;
     }
+
+    public function getUploadedFiles($inputName)
+    {
+         return $_FILES[$inputName];
+    }
 }

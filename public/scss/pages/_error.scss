@@ -1,0 +1,33 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .title {
+    margin: 5rem;
+    font-size: 1.5rem;
+    text-align: center;
+
+    @include breakpoint(xs) {
+      .error-code {
+        display: block;
+        font-size: 1.75rem;
+      }
+
+      .error-message {
+        display: block;
+        font-weight: 400;
+        font-size: 1.25rem;
+      }
+    }
+
+    @include breakpoint(sm) {
+      font-size: 2.25rem;
+    }
+
+    @include breakpoint(md) {
+      font-size: 3rem;
+    }
+  }
+}

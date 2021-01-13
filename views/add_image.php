@@ -3,35 +3,22 @@
           <img src="img/chevron-left.svg" class="icon btn-icon">
      </a>
 
-     <h2 class="section-header__title">Settings</h2>
+     <h2 class="section-header__title">Add Image</h2>
 </section>
 
-<section class="drop-container">
+<section class="drop-container drop-zone">
 
-     <label class="drop-container__placeholder" for="photo-file">
+     <label class="drop-container__placeholder" for="files">
           <img src="img/images.svg" alt="" class="icon drop-container__icon">
 
           <p class="drop-container__description">
                <b>Drop</b> your image/s here
                <br />
-                or Click to <b>Browse</b>
+                or <b>Click</b> to Browse
           </p>
      </label>
 
-     <input type="file" id="photo-file" class="photo">
-
+     <input type="file" id="files" class="photo" multiple accept="image/*">
 </section>
 
-<div class="progress-container">
-
-     <div class="open progress-container__item">
-          <h3>Uploading...</h3>
-          <div class="progress-container__data">
-               <span class="progress-container__percentage">80%</span> -
-               <span class="progress-container__name">my_image.jpg</span>
-          </div>
-          
-          <progress class="progress-container__bar" value="80" max="100"></progress>
-     
-     </div>
-</div>
+<div class="progress-container"></div>

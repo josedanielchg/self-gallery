@@ -36,7 +36,7 @@ export default class FormValidation {
      //----------
      validateField($input)
      {
-          const fieldRules = this.rules[$input.name],
+          const fieldRules = this.rules[$input.name] || {},
                inputName = $input.name,
                inputValue = $input.value;
           
@@ -62,17 +62,25 @@ export default class FormValidation {
                if (ruleName === 'RULE_MATCH' && inputValue !== this[propertyValue].value)
                     this.addErrorByRule(inputName, 'RULE_MATCH', { 'match': propertyValue } );
 
+               if (ruleName === 'RULE_UNMATCH' && inputValue === this[propertyValue].value)
+                    this.addErrorByRule(inputName, 'RULE_UNMATCH', { 'unmatch': propertyValue } );
+
                if (ruleName === 'RULE_DEPENDENCE')
                     this.validateField( this[propertyValue] )
-               
+
+               if (ruleName === 'RULE_UNREQUIRED' && !inputValue)
+                    this.removeErrors(inputName);
           }
 
-          this.displayErrors($input);
+          if($input.type != 'hidden')
+               this.displayErrors($input);
      }
 
      //----------
      validateForm()
-     {                  
+     {
+          this.attributes.forEach( input => this.validateField( this[input] ) );
+
           for( const[key, value] of Object.entries(this.errors) )
                if (value.size !== 0) return false;
 
@@ -83,16 +91,15 @@ export default class FormValidation {
      displayErrors($input)
      {
           const fieldErrors = this.errors[$input.name] ?? new Set(),
-               $formContainer = $input.closest(".form-container__group"),
-               $errorContainer = $formContainer.querySelector('.form-container__group-input-error'),
+               $formGroup = $input.closest(".form-container__group"),
+               $errorContainer = $formGroup.querySelector('.form-container__group-input-error'),
                $fragment = d.createDocumentFragment();
 
           $errorContainer.innerHTML = '';
-
           if(fieldErrors.size === 0)
           {
-               $formContainer.classList.add('correct');
-               $formContainer.classList.remove('incorrect');
+               $formGroup.classList.add('correct');
+               $formGroup.classList.remove('incorrect');
                return;
           }
 
@@ -103,8 +110,8 @@ export default class FormValidation {
           });
 
           $errorContainer.appendChild($fragment);
-          $formContainer.classList.add('incorrect');
-          $formContainer.classList.remove('correct');
+          $formGroup.classList.add('incorrect');
+          $formGroup.classList.remove('correct');
      }
 
      //----------
@@ -117,6 +124,7 @@ export default class FormValidation {
                RULE_MIN: 'Min length of this field must be {min}',
                RULE_MAX: 'Max length of this field must be {max}',
                RULE_MATCH: 'This field must be the same as {match}',
+               RULE_UNMATCH: 'This field must be diferent as {unmatch}',
           };
      }
 
@@ -142,14 +150,23 @@ export default class FormValidation {
 
      //----------
      addError(inputName, message)
-    {
-         let errorMessage = message;
+     {
+          let errorMessage = message;
 
-         if( !this.errors[inputName] )
+          if( !this.errors[inputName] )
                this.errors[inputName] = new Set();
           
           this.errors[inputName].add(errorMessage);
 
           this.displayErrors( this[inputName] )
-    }
+     }
+
+     //----------
+     removeErrors(inputName)
+     {
+          this.errors[inputName] = new Set();
+          const $formGroup  = this[inputName].closest(".form-container__group");
+          $formGroup.classList.remove('incorrect');
+          $formGroup.classList.remove('correct');
+     }
 }

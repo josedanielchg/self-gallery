@@ -5,6 +5,8 @@ namespace app\core;
 class Session
 {
 
+     const TIME_SESSION = 86400;
+
     public function __construct()
     {
         session_start();
@@ -25,8 +27,7 @@ class Session
          if(!isset($_SESSION['user']))
                return false;
 
-          // $inactivity = 86400;
-          $inactivity = 120;
+          $inactivity = self::TIME_SESSION;
           $sessionTTL = time() - $_SESSION['timeout'];
           
           if($sessionTTL > $inactivity)

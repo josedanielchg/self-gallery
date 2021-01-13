@@ -10,6 +10,7 @@
 @import "components/buttons";
 @import "components/form-container-group";
 @import "components/add-image-btn";
+@import "components/loader";
 
 @import "layout/body";
 @import "layout/container";
@@ -21,3 +22,4 @@
 @import "pages/home";
 @import "pages/profile";
 @import "pages/add-image";
+@import "pages/error";

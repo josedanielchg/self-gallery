@@ -19,7 +19,7 @@ class User extends DbModel
 
     public function attributes(): array
     {
-        return ['username', 'email', 'password'];
+          return ['username', 'email', 'password'];
     }
 
     public function rules()
@@ -27,12 +27,14 @@ class User extends DbModel
         return [
             'username' => [
                  self::RULE_REQUIRED,
-                 [ self::RULE_UNIQUE, 'class' => self::class]
+                 [self::RULE_MIN, 'min' => 4],
+                 [self::RULE_MAX, 'max' => 16],
+                 [self::RULE_UNIQUE, 'class' => self::class]
                ],
             'email' => [
                  self::RULE_REQUIRED, 
                  self::RULE_EMAIL, 
-                 [ self::RULE_UNIQUE, 'class' => self::class]
+                 [self::RULE_UNIQUE, 'class' => self::class]
                ],
             'password' => [
                  self::RULE_REQUIRED, 
@@ -45,7 +47,22 @@ class User extends DbModel
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-
         return parent::save();
+    }
+
+    public static function increasePublications($user_id)
+    {
+          $tableName = self::tableName();
+          $statement = self::prepare("UPDATE $tableName SET publications = publications +1 WHERE id = :userid");
+          $statement->bindValue(":userid", $user_id);
+          return $statement->execute();
+    }
+     
+    public static function decreasePublications($user_id)
+     {
+          $tableName = self::tableName();
+          $statement = self::prepare("UPDATE $tableName SET publications = publications - 1 WHERE id = :userid");
+          $statement->bindValue(":userid", $user_id);
+          return $statement->execute();
     }
 }

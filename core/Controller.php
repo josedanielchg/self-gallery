@@ -15,6 +15,4 @@ class Controller
      {
         $this->layouts = $layout;
     }
-
-
 }

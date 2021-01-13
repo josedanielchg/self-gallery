@@ -1,5 +1,5 @@
 import FormValidation from "./modules/FormValidation.js";
-import submitData from "./modules/submitData.js";
+import submitData, {displayLoader, hiddenLoader}  from "./modules/submitData.js";
 
 (() => {
      const d = document,
@@ -32,15 +32,32 @@ import submitData from "./modules/submitData.js";
         
           if( formValidation.validateForm() )
           {
-               const res =await submitData($form, '/register');
-               console.log(res);
+               const $spinner = e.target.querySelector('.spinner');
+
+               displayLoader($spinner);
+               const res =await submitData(new FormData($form), '/register');
+               hiddenLoader($spinner);
+
                if(res.ok)
                {
-                    alert("Registration completed successfully");
+                    await Swal.fire({
+                         title: 'Success!',
+                         text: 'Registration completed',
+                         icon: 'success',
+                         timer: 3000,
+                         timerProgressBar: true,
+                    });
                     d.querySelector('.signin').classList.remove("right-panel-active");
                }
                else
                {
+                    Swal.fire({
+                         title: 'Error!',
+                         text: 'Register process failed. Please try again',
+                         icon: 'error',
+                         timer: 3000,
+                         timerProgressBar: true,
+                    });
                     for( const [key, value] of Object.entries(res.errors) )
                          value.forEach( er => formValidation.addError(key, er));
                }

@@ -33,37 +33,14 @@
                <div class="form-container__group-input-error"></div>
           </div>
 
-          <button class="form-container__forgot forgot-btn">Forgot your password?</button>
-
           <div class="form-container__group">
                <div class="form-container__group-submit">
                     <input type="submit" value="Sign In" class="button">
-               </div>
-          </div>
-
-     </form>
-     <form action="" class="forgot-password-form" method="post">
-          <h2>
-               Introduce your recovery email address 
-               <span>and we will send you an email</span>
-          </h2>
-
-          <div class="form-container__group">
-               <img src="img/envelope.svg" alt="" class="icon">
-               <label for="forgotEmail">mail:</label>
-               <div class="form-container__group-input">
-                    <input type="email" id="forgotEmail" name="email" required class="input"/>
-                    <img src="img/times-circle.svg" alt="" class="icon state incorrect">
-                    <img src="img/check-circle.svg" alt="" class="icon state correct">
-               </div>
-               <div class="form-container__group-input-error"></div>
-          </div>
-
-          <button class="form-container__forgot forgot-btn">Go Back</button>
-
-          <div class="form-container__group">
-               <div class="form-container__group-submit">
-                    <input type="submit" value="Continue" class="button">
+                    <div class="spinner">
+                         <div class="bounce1"></div>
+                         <div class="bounce2"></div>
+                         <div class="bounce3"></div>
+                    </div>
                </div>
           </div>
      </form>
@@ -120,6 +97,12 @@
           <div class="form-container__group">
                <div class="form-container__group-submit">
                     <input type="submit" value="Sign Up" class="button">
+
+                    <div class="spinner">
+                         <div class="bounce1"></div>
+                         <div class="bounce2"></div>
+                         <div class="bounce3"></div>
+                    </div>
                </div>
           </div>
      </form>

@@ -8,6 +8,27 @@
   .drop-container {
     margin: 0 auto;
     overflow: visible;
+    border-radius: 10px;
+    transition: 0.1s ease all;
+    margin-bottom: 2rem;
+
+    //Boders
+    background-image: linear-gradient(
+        to right,
+        lighten($gray-color, 10) 50%,
+        transparent 50%
+      ),
+      linear-gradient(to right, lighten($gray-color, 10) 50%, transparent 50%),
+      linear-gradient(to bottom, lighten($gray-color, 10) 50%, transparent 50%),
+      linear-gradient(to bottom, lighten($gray-color, 10) 50%, transparent 50%);
+    background-position: left top, left bottom, left top, right top;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 25px 2px, 25px 2px, 2px 25px, 2px 25px;
+
+    &.is-active {
+      transform: scale(1.05);
+      background-size: 25px 4px, 25px 4px, 4px 25px, 4px 25px;
+    }
 
     @include breakpoint(xs) {
       width: 95%;
@@ -18,41 +39,13 @@
     }
 
     &__placeholder {
-      border-radius: 10px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       min-height: 250px;
-      transition: 0.1s ease all;
       cursor: pointer;
-
-      //Boders
-      background-image: linear-gradient(
-          to right,
-          lighten($gray-color, 10) 50%,
-          transparent 50%
-        ),
-        linear-gradient(to right, lighten($gray-color, 10) 50%, transparent 50%),
-        linear-gradient(
-          to bottom,
-          lighten($gray-color, 10) 50%,
-          transparent 50%
-        ),
-        linear-gradient(
-          to bottom,
-          lighten($gray-color, 10) 50%,
-          transparent 50%
-        );
-      background-position: left top, left bottom, left top, right top;
-      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-      background-size: 25px 2px, 25px 2px, 2px 25px, 2px 25px;
-
-      &:hover {
-        transform: scale(1.05);
-        background-size: 25px 4px, 25px 4px, 4px 25px, 4px 25px;
-      }
     }
 
     &__icon {
@@ -69,6 +62,7 @@
 
   .progress-container {
     margin: 0 auto;
+    overflow: hidden;
 
     @include breakpoint(xs) {
       width: 95%;
@@ -85,19 +79,43 @@
       border-radius: 10px;
       display: flex;
       flex-direction: column;
-      transition: 0.6s ease all;
       opacity: 0;
+      transform: translateY(-100%);
+      transition: 0.5s ease-out all;
       pointer-events: none;
+      position: relative;
 
       h3 {
         font-weight: normal;
         margin-bottom: 1rem;
+        padding-right: 1rem;
       }
 
       &.open {
-        transition: 0.6s ease all;
+        transition-delay: 1ms;
+        transition: 0.5s ease-in all;
         pointer-events: all;
         opacity: 1;
+        transform: translateY(0);
+      }
+
+      &.error {
+        background-color: rgba(darken($coral-color, 20), 0.7);
+      }
+
+      button {
+        position: absolute;
+        right: 1rem;
+        top: 0.9rem;
+        transform: rotate(45deg);
+        width: 1rem;
+        background-color: transparent;
+      }
+
+      li {
+        list-style: disc;
+        margin-left: 1rem;
+        margin-bottom: 8px;
       }
     }
 

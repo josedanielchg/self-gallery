@@ -7,25 +7,25 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 
-class AddImageController extends Controller {
+class ErrorController extends Controller {
 
-     public function addImage()
+     public function renderError($e)
     {
-          if(Application::$app->isGuest())
-               Application::$app->response->redirect('/');
-               
           $this->setLayout([
                'main' => 'main',
                'complements' => [
                     'header',
-                    'footer'
+                    'footer',
                ]
           ]);
 
-        return $this->render('add_image', [
+        return $this->render('_error', [
                'variables' => [
-                    'tittle' => 'SelfGallery',
-                    'site' => 'add-image'
+                    'tittle' => 'SelfGallery - Error '. $e->getCode(),
+                    'site' => 'error',
+                    'exception' => $e,
+                    'code' => $e->getCode(),
+                    'message' => $e->getMessage()
                ],
                'scripts'=> []
         ]);

@@ -67,9 +67,14 @@
   &-submit {
     grid-column: 1/-1;
     grid-row: 1/-1;
-    display: flex;
-    justify-content: center;
     margin-bottom: -1.5rem;
+    text-align: center;
+  }
+
+  &.correct {
+    .state.correct {
+      opacity: 1;
+    }
   }
 
   &.incorrect {
@@ -89,12 +94,6 @@
     }
 
     .state.incorrect {
-      opacity: 1;
-    }
-  }
-
-  &.correct {
-    .state.correct {
       opacity: 1;
     }
   }

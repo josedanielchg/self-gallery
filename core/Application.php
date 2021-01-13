@@ -4,6 +4,7 @@ namespace app\core;
 
 use app\core\db\Database;
 use app\models\User;
+use app\controllers\ErrorController;
 
 class Application
 {
@@ -56,12 +57,11 @@ class Application
 
      public function run() 
      {
-     //    try {
-               echo $this->router->resolve();
-     //    } catch (\Exception $e) {
-     //        echo $this->router->renderView('_error', [
-     //            'exception' => $e,
-     //        ]);
-     //    }
+        try {
+          echo $this->router->resolve();
+        } catch (\Exception $e) {
+          $this->controller = new ErrorController();
+          echo $this->controller->renderError($e);
+        }
      }
 }

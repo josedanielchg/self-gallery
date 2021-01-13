@@ -1,6 +1,7 @@
 <?php
 
 namespace app\core;
+use app\core\exception\NotFoundException;
 
 class Router
 {
@@ -35,14 +36,14 @@ class Router
           $callback = $this->routeMap[$method][$url] ?? false;
 
           if (!$callback) {
-          echo "ERROR 404";
-          return;
-          //   throw new NotFoundException();
+               throw new NotFoundException();
+               return;
           }
+
           if (is_string($callback)) {
-          //   return $this->renderView($callback);
-          return $callback;
+               return $callback;
           }
+
           if (is_array($callback)) {
                $controller = new $callback[0];
                Application::$app->controller = $controller;
