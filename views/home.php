@@ -32,11 +32,7 @@
 
 <section class="gallery">
      <?php 
-          use app\models\ImageModel;
-          use app\core\Application;
-
-          $images = ImageModel::getImagesByUserId(Application::$app->session->getUser());
-
+     
           if($images) {
                foreach ($images as $img => $attr) {
                     $filename = str_replace('img-', 'thumb-', $attr["filename"]);

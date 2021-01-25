@@ -45,7 +45,7 @@ import submitData, {displayLoader, hiddenLoader} from "./modules/submitData.js";
                {
                     $item.classList.remove('select');
                     $form['profile_image'].value = '0';
-                    $profileImg.src = 'files/profile.png';
+                    $profileImg.src = 'files/thumbs/profile.png';
                }
                else
                {
@@ -62,7 +62,7 @@ import submitData, {displayLoader, hiddenLoader} from "./modules/submitData.js";
           e.preventDefault();
           
           const {value: confirm} = await Swal.fire({
-               title: 'Important!',
+               title: 'Warning!',
                text: 'Are you sure you want to save the changes?',
                icon: 'info',
                confirmButtonText: 'Save',

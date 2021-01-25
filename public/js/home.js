@@ -4,7 +4,8 @@ import submitData, {displayLoader, hiddenLoader}  from "./modules/submitData.js"
      const d = document,
           $modal = d.querySelector('.modal'),
           $modalImg = d.querySelector('.full-img'),
-          $galleryItems = d.querySelectorAll(".gallery__item");
+          $galleryItems = d.querySelectorAll(".gallery__item"),
+          $galleryContainer = d.querySelector('.gallery');
 
 //--------------------------- add event listeners ---------------------------
      d.addEventListener("click", e=> {
@@ -36,12 +37,16 @@ import submitData, {displayLoader, hiddenLoader}  from "./modules/submitData.js"
      })
 //---------------------------
      d.addEventListener("DOMContentLoaded", e => {
-          $galleryItems.forEach(el => el.style.height = el.offsetWidth+'px');
+          const rowHeight = $galleryItems[0].offsetWidth + 'px';
+          $galleryContainer.style.setProperty('--row-height', rowHeight);
+          $galleryContainer.classList.add('show');
      });
 
 //---------------------------
      addEventListener("resize", e => {
-          $galleryItems.forEach(el => el.style.height = el.offsetWidth+'px');
+          const rowHeight = $galleryItems[0].offsetWidth + 'px';
+          $galleryContainer.style.setProperty('--row-height', rowHeight);
+          $galleryContainer.classList.add('show');
      });
 
 

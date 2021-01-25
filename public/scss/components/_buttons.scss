@@ -2,7 +2,7 @@
   padding: 0.5rem 2rem;
   border-radius: 5px;
   display: inline-block;
-  color: $violet-color;
+  color: $blue-color;
   transition: 0.3s ease all;
   background-color: $green-color;
   font-size: 1.5rem;
@@ -52,7 +52,7 @@
     font-weight: normal;
 
     &:hover {
-      color: $violet-color;
+      color: $blue-color;
       background-color: $green-color;
     }
   }

@@ -61,7 +61,8 @@ class View
      {
           //This loop will allow to replace all the variables defined as {{ $nameVariable }} in the view
           foreach ($params as $key => $value) {
-               $html =  str_replace( '{{ $'. $key. ' }}', $value,  $html);
+               if(is_string($value))
+                    $html =  str_replace( '{{ $'. $key. ' }}', $value,  $html);
           }
           return $html;
      }

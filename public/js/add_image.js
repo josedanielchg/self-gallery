@@ -71,8 +71,10 @@ import submitData from './modules/submitData.js';
 
           //When the file load is end
           fileReader.addEventListener('loadend', async e => {
+               $progressBar.value = 100;
+               $percentage.innerHTML = '100%';
                const  upload = await uploader(file);
-               
+
                (upload === true)
                     ? $status.innerText = 'Complete!!!'
                     : displayErrors( $itemContainer, $progressBar, $status, $containerData, file, upload.errors )

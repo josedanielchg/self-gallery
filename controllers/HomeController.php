@@ -19,6 +19,8 @@ class HomeController extends Controller {
           $imageProfile =  ImageModel::getImageById($imageProfileId) ?? 'profile.png';
           $imageProfileName = str_replace('img-', 'thumb-', $imageProfile);
 
+          $images = ImageModel::getImagesByUserId(Application::$app->session->getUser());
+
           $this->setLayout([
                'main' => 'main',
                'complements' => [
@@ -35,7 +37,8 @@ class HomeController extends Controller {
                     'addImageBtn' => true,
                     'username' => Application::$app->user->username,
                     'publications' => Application::$app->user->publications,
-                    'imageProfile' => $imageProfileName
+                    'imageProfile' => $imageProfileName,
+                    'images' => $images
                ],
                'scripts' => [
                     'vendors/sweetalert2@10.js' => 'not-module-type',
